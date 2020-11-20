@@ -84,6 +84,7 @@ class JobsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $job = Jobs::find($id);
+        $job->delete();
     }
 }

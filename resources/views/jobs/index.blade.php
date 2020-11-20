@@ -71,7 +71,7 @@
                                         <td>
                                             <a href="{{url("jobs")}}/{{$job->id}}/edit" class="btn btn-sm btn-icon btn-info"><i class="fa fa-edit"></i></a>
 
-                                            <a href="{{url("jobs")}}/{{$job->id}}/edit" class="btn btn-sm btn-icon btn-danger"><i class="fa fa-times"></i></a>
+                                            <a href="javascript:void(0)" class="btn btn-sm btn-icon btn-danger delete-job" data-elementid="{{$job->id}}"><i class="fa fa-times"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -87,3 +87,36 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $('.delete-job').on('click', function(){
+            var el = $(this);
+            var elementid = el.data('elementid');
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href({{url("jobs/")}});
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'The operation has been aborted',
+                        'error'
+                    )
+                }
+            })
+        });
+
+    </script>
+@endpush

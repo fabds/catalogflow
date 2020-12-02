@@ -21,6 +21,8 @@ class CreateConfigTable extends Migration
             $table->integer('active')->default(0);
             $table->unique(['name', 'scope']);
         });
+
+        DB::statement('ALTER TABLE `config` ADD FULLTEXT fulltext_index (`scope`)');
     }
 
     /**

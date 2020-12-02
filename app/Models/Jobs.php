@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Jobs extends Model
 {
     use HasFactory;
+    use FullTextSearch;
 
     /**
      * The attributes that are mass assignable.
@@ -24,4 +25,14 @@ class Jobs extends Model
         'log',
         'notes'
     ];
+
+    protected $searchable = [
+        'filename',
+        'project',
+        '`type`',
+        '`key`'
+    ];
+
+    protected $dates = ['processed_at'];
+
 }

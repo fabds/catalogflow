@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, FullTextSearch;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'department'
     ];
 
     /**
@@ -39,5 +40,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    protected $searchable = [
+        '`firstname`',
+        '`lastname`',
+        '`email`',
+        '`department`'
     ];
 }

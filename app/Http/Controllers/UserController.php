@@ -16,7 +16,11 @@ class UserController extends Controller
      */
     public function index(User $model)
     {
-        return view('users.index', ['users' => $model->paginate(15)]);
+        $mod = $model;
+        if(isset($_GET['s']) && !empty($_GET['s']) && strlen($_GET['s'])>=3) {
+            $mod = $model->search($_GET['s']);
+        }
+        return view('users.index', ['users' => $mod->paginate(15)]);
     }
 
     /**

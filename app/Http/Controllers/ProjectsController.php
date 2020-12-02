@@ -14,7 +14,11 @@ class ProjectsController extends Controller
      */
     public function index(Config $model)
     {
-        return view('projects.index', ['projects' => $model->where('name','context')->paginate(10)]);
+        $mod = $model->where('name','context');
+        if(isset($_GET['s']) && !empty($_GET['s']) && strlen($_GET['s'])>=3) {
+            $mod = $model->where('name','context')->search($_GET['s']);
+        }
+        return view('projects.index', ['projects' => $mod->paginate(10)]);
     }
 
     /**

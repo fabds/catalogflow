@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Config extends Model
 {
     use HasFactory;
+    use FullTextSearch;
 
     protected $table = "config";
 
@@ -21,6 +22,10 @@ class Config extends Model
         'scope',
         'value',
         'active'
+    ];
+
+    protected $searchable = [
+        '`scope`'
     ];
 
     public $timestamps = false;

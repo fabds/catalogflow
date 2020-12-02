@@ -22,11 +22,19 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <label class="form-control-label">Name</label>
+                                <label class="form-control-label">Firstname</label>
                                 <p>
-                                    <h5 class="text-dark">{{$user->name}}</h5>
+                                    <h5 class="text-dark">{{$user->firstname}}</h5>
                                 </p>
                             </div>
+                            <div class="col-md-6">
+                                <label class="form-control-label">Lastname</label>
+                                <p>
+                                <h5 class="text-dark">{{$user->lastname}}</h5>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6">
                                 <label class="form-control-label">Email</label>
                                 <p>
@@ -35,14 +43,15 @@
                                 </h5>
                                 </p>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6">
                                 <label class="form-control-label">Department</label>
                                 <p>
                                 <h5 class="text-dark">Tech</h5>
                                 </p>
                             </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-md-6">
                                 <label class="form-control-label">Status</label>
                                 <p>
@@ -51,27 +60,12 @@
                                 </h5>
                                 </p>
                             </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-md-6">
                                 <label class="form-control-label">Created At</label>
                                 <p>
                                     <h5>
                                     @if(!empty($user->created_at))
                                         {{$user->created_at}}
-                                    @else
-                                        -
-                                    @endif
-                                    </h5>
-                                </p>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-control-label">Processed At</label>
-                                <p>
-                                    <h5>
-                                    @if(!empty($user->processed_at))
-                                        {{$user->processed_at}}
                                     @else
                                         -
                                     @endif

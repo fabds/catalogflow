@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateJobsTable extends Migration
 {
@@ -29,6 +30,8 @@ class CreateJobsTable extends Migration
             $table->unique(["filename","project","type","environment","key"]);
             $table->unique("key");
         });
+
+        DB::statement('ALTER TABLE `jobs` ADD FULLTEXT fulltext_index (`filename`, `project`, `type`, `key`)');
     }
 
     /**

@@ -7,6 +7,13 @@
     <div class="content">
         <div class="row">
             <div class="col-md-12">
+                @if(isset($_GET['s']) && !empty($_GET['s']))
+                    @if(strlen($_GET['s'])>=3)
+                        <h4>Results for <strong>'{{$_GET['s']}}'</strong></h4>
+                    @else
+                        <h4>Can't find results for <strong>'{{$_GET['s']}}'</strong>. Please insert at least 3 chars</h4>
+                    @endif
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Jobs ({{$jobs->total()}})</h4>
@@ -63,10 +70,10 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{!empty($job->created_at)?$job->created_at:'-'}}
+                                            {{!empty($job->created_at)?$job->created_at->format($catalogflow_config['formats']['date']['human_datetime']):'-'}}
                                         </td>
                                         <td>
-                                            {{!empty($job->processed_at)?$job->processed_at:'-'}}
+                                            {{!empty($job->processed_at)?$job->processed_at->format($catalogflow_config['formats']['date']['human_datetime']):'-'}}
                                         </td>
                                         <td>
                                             <a href="{{url("jobs")}}/{{$job->id}}/edit" class="btn btn-sm btn-icon btn-info"><i class="fa fa-edit"></i></a>
@@ -78,7 +85,7 @@
                                 </tbody>
                             </table>
                             <div class="d-flex justify-content-center pagination">
-                            {{$jobs->links()}}
+                            {{$jobs->appends(request()->query())->links()}}
                             </div>
                         </div>
                     </div>

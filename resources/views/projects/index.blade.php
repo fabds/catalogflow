@@ -7,6 +7,13 @@
     <div class="content">
         <div class="row">
             <div class="col-md-12">
+                @if(isset($_GET['s']) && !empty($_GET['s']))
+                    @if(strlen($_GET['s'])>=3)
+                        <h4>Results for <strong>'{{$_GET['s']}}'</strong></h4>
+                    @else
+                        <h4>Can't find results for <strong>'{{$_GET['s']}}'</strong>. Please insert at least 3 chars</h4>
+                    @endif
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Projects ({{$projects->total()}})</h4>

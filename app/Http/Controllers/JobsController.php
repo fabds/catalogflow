@@ -13,7 +13,11 @@ class JobsController extends Controller
      */
     public function index(Jobs $model)
     {
-        return view('jobs.index', ['jobs' => $model->paginate(20), 'catalogflow_config' => config('catalogflow')]);
+        $mod = $model;
+        if(isset($_GET['s']) && !empty($_GET['s']) && strlen($_GET['s'])>=3) {
+            $mod = $model->search($_GET['s']);
+        }
+        return view('jobs.index', ['jobs' => $mod->paginate(10), 'catalogflow_config' => config('catalogflow')]);
     }
 
     /**

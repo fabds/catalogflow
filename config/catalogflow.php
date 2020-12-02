@@ -1,5 +1,11 @@
 <?php
 return [
+    "formats" => [
+        "date" => [
+            "default_datetime" => "d/m/Y H:i:s",
+            "human_datetime" => "d/m/Y - H:i",
+        ]
+    ],
     "statuses" => [
         "fetched" => [
             "label" => "Fetched",

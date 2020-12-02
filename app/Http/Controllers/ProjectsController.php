@@ -14,7 +14,7 @@ class ProjectsController extends Controller
      */
     public function index(Config $model)
     {
-        return view('projects.index', ['projects' => $model->where('name','context')->simplePaginate(5)]);
+        return view('projects.index', ['projects' => $model->where('name','context')->paginate(10)]);
     }
 
     /**

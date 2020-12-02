@@ -25,7 +25,7 @@
                                 <label class="form-control-label">Filename</label>
                                 <p>
                                     <?php
-                                        $filenames = explode(";", $job->filename);
+                                        $filenames = explode(",", $job->filename);
                                     ?>
                                     @foreach($filenames as $file)
                                         <h5 class="text-dark"><i class="fa fa-file-csv mr-1"></i> {{$file}}</h5>

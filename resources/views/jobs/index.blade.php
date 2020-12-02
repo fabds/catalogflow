@@ -9,13 +9,13 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title"> Jobs</h4>
+                        <h4 class="card-title">Jobs ({{$jobs->total()}})</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-secondary">
-                                    <th>
+                                    <th style="max-width: 300px; word-wrap:break-word;">
                                         Filename
                                     </th>
                                     <th>
@@ -43,7 +43,7 @@
                                 <tbody>
                                 @foreach($jobs as $job)
                                     <tr>
-                                        <td>
+                                        <td style="max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                             <a class="font-weight-bold" href="{{url("jobs")}}/{{$job->id}}">{{$job->filename}}</a>
                                         </td>
                                         <td>
@@ -90,10 +90,9 @@
 
 @push('scripts')
     <script>
-        $('.delete-job').on('click', function(){
+        $(document).on('click', '.delete-job', function(){
             var el = $(this);
             var elementid = el.data('elementid');
-
             swalWithBootstrapButtons.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -104,7 +103,15 @@
                 reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
-                    location.href({{url("jobs/")}});
+                    $.ajax({
+                        type: "DELETE",
+                        url: '{{url("jobs/")}}/'+elementid,
+                        data: {"_token": "{{ csrf_token() }}"},
+                        success: function (data) {
+                            catalogflow.showNotification('<h5>Avviso</h5><h6>Job '+ elementid +' eliminato con successo</h6>', 'nc-icon nc-bell-55', 'success','top','right');
+                            el.parent().parent().remove();
+                        }
+                    });
                 } else if (
                     /* Read more about handling dismissals below */
                     result.dismiss === Swal.DismissReason.cancel
@@ -115,8 +122,7 @@
                         'error'
                     )
                 }
-            })
+            });
         });
-
     </script>
 @endpush

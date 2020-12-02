@@ -6,20 +6,15 @@
 @section('content')
     <div class="content">
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="col-lg-2 col-md-4 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
-                            <div class="col-5 col-md-4">
-                                <div class="icon-big text-center icon-warning">
-                                    <i class="nc-icon nc-globe text-warning"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-md-8">
+                            <div class="col-12">
                                 <div class="numbers">
-                                    <p class="card-category">Progetti Attivi</p>
-                                    <p class="card-title">6
-                                        <p>
+                                    <p class="card-category font-weight-bold">Progetti</p>
+                                    <p class="card-title"><strong class="text-info">{{$stats["all_projects"]->count()}}</strong></p>
+                                    <p class="card-category font-italic">Totali</p>
                                 </div>
                             </div>
                         </div>
@@ -27,25 +22,20 @@
                     <div class="card-footer ">
                         <hr>
                         <div class="stats">
-                            <i class="fa fa-refresh"></i> Update Now
+                            <a href="{{url("/projects")}}" class="nav-link text-dark"><i class="fa fa-briefcase"></i> Progetti</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="col-lg-2 col-md-4 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
-                            <div class="col-5 col-md-4">
-                                <div class="icon-big text-center icon-warning">
-                                    <i class="nc-icon nc-money-coins text-success"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-md-8">
+                            <div class="col-12">
                                 <div class="numbers">
-                                    <p class="card-category">Job Da Processare</p>
-                                    <p class="card-title">1
-                                        <p>
+                                    <p class="card-category font-weight-bold">Progetti</p>
+                                    <p class="card-title"><strong class="text-success">{{$stats["active_projects"]->count()}}</strong></p>
+                                    <p class="card-category font-italic">Attivi</p>
                                 </div>
                             </div>
                         </div>
@@ -53,25 +43,20 @@
                     <div class="card-footer ">
                         <hr>
                         <div class="stats">
-                            <i class="fa fa-calendar-o"></i> Last day
+                            <a href="{{url("/projects")}}" class="nav-link text-dark"><i class="fa fa-briefcase"></i> Progetti</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="col-lg-2 col-md-4 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
-                            <div class="col-5 col-md-4">
-                                <div class="icon-big text-center icon-warning">
-                                    <i class="nc-icon nc-vector text-danger"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-md-8">
+                            <div class="col-12">
                                 <div class="numbers">
-                                    <p class="card-category">Job Processati</p>
-                                    <p class="card-title">25
-                                        <p>
+                                    <p class="card-category font-weight-bold">Progetti</p>
+                                    <p class="card-title"><strong class="text-danger">{{$stats["inactive_projects"]->count()}}</strong></p>
+                                    <p class="card-category font-italic">Non Attivi</p>
                                 </div>
                             </div>
                         </div>
@@ -79,25 +64,20 @@
                     <div class="card-footer ">
                         <hr>
                         <div class="stats">
-                            <i class="fa fa-clock-o"></i> In the last hour
+                            <a href="{{url("/projects")}}" class="nav-link text-dark"><i class="fa fa-briefcase"></i> Progetti</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="col-lg-2 col-md-4 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-body ">
                         <div class="row">
-                            <div class="col-5 col-md-4">
-                                <div class="icon-big text-center icon-warning">
-                                    <i class="nc-icon nc-favourite-28 text-primary"></i>
-                                </div>
-                            </div>
-                            <div class="col-7 col-md-8">
+                            <div class="col-12">
                                 <div class="numbers">
-                                    <p class="card-category">Job In Errore</p>
-                                    <p class="card-title">3
-                                        <p>
+                                    <p class="card-category font-weight-bold">Jobs</p>
+                                    <p class="card-title"><strong class="text-info">{{$stats["to_process_jobs"]->count()}}</strong></p>
+                                    <p class="card-category font-italic">Da Processare</p>
                                 </div>
                             </div>
                         </div>
@@ -105,12 +85,102 @@
                     <div class="card-footer ">
                         <hr>
                         <div class="stats">
-                            <i class="fa fa-refresh"></i> Update now
+                            <a href="{{url("/jobs")}}" class="nav-link text-dark"><i class="fa fa-list"></i> Jobs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="numbers">
+                                    <p class="card-category font-weight-bold">Jobs</p>
+                                    <p class="card-title"><strong class="text-success">{{$stats["processed_jobs"]->count()}}</strong></p>
+                                    <p class="card-category font-italic">Processati</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer ">
+                        <hr>
+                        <div class="stats">
+                            <a href="{{url("/jobs")}}" class="nav-link text-dark"><i class="fa fa-list"></i> Jobs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="numbers">
+                                    <p class="card-category font-weight-bold">Jobs</p>
+                                    <p class="card-title"><strong class="text-danger">{{$stats["error_jobs"]->count()}}</strong></p>
+                                    <p class="card-category font-italic">In Errore</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer ">
+                        <hr>
+                        <div class="stats">
+                            <a href="{{url("/jobs")}}" class="nav-link text-dark"><i class="fa fa-list"></i> Jobs</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card ">
+                    <div class="card-header ">
+                        <h5 class="card-title">Jobs Statistics</h5>
+                        <p class="card-category">Jobs</p>
+                    </div>
+                    <div class="card-body ">
+                        <canvas id="chartJobs"></canvas>
+                    </div>
+                    <div class="card-footer ">
+                        <div class="legend">
+                            <i class="fa fa-circle text-primary"></i> Da Processare
+                            <i class="fa fa-circle text-success"></i> Processati
+                            <i class="fa fa-circle text-warning"></i> Bloccati
+                            <i class="fa fa-circle text-danger"></i> Errore
+                        </div>
+                        <hr>
+                        <div class="stats">
+                            <a href="{{url("/jobs")}}" class="nav-link text-dark"><i class="fa fa-list"></i> Jobs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-title">NASDAQ: AAPL</h5>
+                        <p class="card-category">Line Chart with Points</p>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="speedChart" width="400" height="100"></canvas>
+                    </div>
+                    <div class="card-footer">
+                        <div class="chart-legend">
+                            <i class="fa fa-circle text-info"></i> Tesla Model S
+                            <i class="fa fa-circle text-warning"></i> BMW 5 Series
+                        </div>
+                        <hr />
+                        <div class="card-stats">
+                            <a href="{{url("/jobs")}}" class="nav-link text-dark"><i class="fa fa-list"></i> Jobs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card ">
@@ -130,6 +200,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-4">
                 <div class="card ">
@@ -184,6 +255,72 @@
         $(document).ready(function() {
             // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
             demo.initChartsPages();
+
+            ctx = document.getElementById('chartJobs').getContext("2d");
+
+            myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: [1, 2, 3],
+                    datasets: [{
+                        label: "Jobs",
+                        pointRadius: 0,
+                        pointHoverRadius: 0,
+                        backgroundColor: [
+                            '#50CBCE',
+                            '#6BD098',
+                            '#FBC658',
+                            '#EF8157'
+                        ],
+                        borderWidth: 0,
+                        data: [{{$stats["to_process_jobs"]->count()}}, {{$stats["processed_jobs"]->count()}}, {{$stats["stucked_jobs"]->count()}}, {{$stats["error_jobs"]->count()}}]
+                    }]
+                },
+
+                options: {
+
+                    legend: {
+                        display: false
+                    },
+
+                    pieceLabel: {
+                        render: 'percentage',
+                        fontColor: ['white'],
+                        precision: 2
+                    },
+
+                    tooltips: {
+                        enabled: false
+                    },
+
+                    scales: {
+                        yAxes: [{
+
+                            ticks: {
+                                display: false
+                            },
+                            gridLines: {
+                                drawBorder: false,
+                                zeroLineColor: "transparent",
+                                color: 'rgba(255,255,255,0.05)'
+                            }
+
+                        }],
+
+                        xAxes: [{
+                            barPercentage: 1.6,
+                            gridLines: {
+                                drawBorder: false,
+                                color: 'rgba(255,255,255,0.1)',
+                                zeroLineColor: "transparent"
+                            },
+                            ticks: {
+                                display: false,
+                            }
+                        }]
+                    },
+                }
+            });
         });
     </script>
 @endpush

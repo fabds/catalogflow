@@ -14,14 +14,8 @@ class JobsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('jobs')->insert([
-            'filename' => 'Lamartina_netsuite_09324_masterfile.csv',
-            'project' => 'lamartina',
-            'type' => 'netsuite',
-            'environment' => 'local',
-            'key' => '20201120162629726',
-            'status' => 'processed',
-            'created_at' => now()
-        ]);
+        $sql = file_get_contents(database_path() . '/sql/jobs_dump.sql');
+
+        DB::statement($sql);
     }
 }

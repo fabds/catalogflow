@@ -9,12 +9,27 @@
             <div class="container col-md-10">
                 <div class="header-body text-center mb-7">
                     <div class="row justify-content-center">
-                        <div class="col-lg-8 col-md-12 pt-5">
-                            <h1 class="@if(Auth::guest()) text-white @endif">{{ __('Welcome to Paper Dashboard Laravel Live Preview.') }}</h1>
+                        <div class="col-lg-4 col-md-6 pt-5">
+                            <div class="border p-10">
+                                <br/>
+                                <h1 class="@if(Auth::guest()) text-white @endif"><i class="fa fa-book"></i></h1>
 
-                            <p class="@if(Auth::guest()) text-white @endif text-lead mt-3 mb-0">
-                                {{ __('Log in and see how you can save more than 90 hours of work with CRUDs for managing: #users, #roles, #items, #categories, #tags and more.') }}
-                            </p>
+                                <h3 class="@if(Auth::guest()) text-white @endif text-lead mt-3 mb-0">
+                                    {{ __('Documentation') }}
+                                </h3>
+                                <br/>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 pt-5">
+                            <div class="border p-10">
+                                <br/>
+                                <h1 class="@if(Auth::guest()) text-white @endif"><i class="fa fa-tachometer-alt"></i> </h1>
+
+                                <h3 class="@if(Auth::guest()) text-white @endif text-lead mt-3 mb-0">
+                                    {{ __('Dashboard') }}
+                                </h3>
+                                <br/>
+                            </div>
                         </div>
                     </div>
                 </div>

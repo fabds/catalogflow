@@ -13,7 +13,7 @@ class JobsController extends Controller
      */
     public function index(Jobs $model)
     {
-        return view('jobs.index', ['jobs' => $model->simplePaginate(20), 'catalogflow_config' => config('catalogflow')]);
+        return view('jobs.index', ['jobs' => $model->paginate(20), 'catalogflow_config' => config('catalogflow')]);
     }
 
     /**

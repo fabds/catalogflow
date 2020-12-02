@@ -11,6 +11,11 @@ return [
             "type" => "danger",
             "selectable" => false
         ],
+        "not_found" => [
+            "label" => "Not Found",
+            "type" => "danger",
+            "selectable" => false
+        ],
         "received" => [
             "label" => "Received",
             "type" => "success",

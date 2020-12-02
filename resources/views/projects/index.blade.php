@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title"> Projects</h4>
+                        <h4 class="card-title">Projects ({{$projects->total()}})</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -64,9 +64,12 @@
                                 @endforeach
                                 </tbody>
                             </table>
+
+                            <hr/><br/>
                             <div class="d-flex justify-content-center pagination">
-                            {{$projects->links()}}
+                                {{$projects->links()}}
                             </div>
+
                         </div>
                     </div>
                 </div>

@@ -12,22 +12,26 @@
                         <div class="col-lg-4 col-md-6 pt-5">
                             <div class="border p-10">
                                 <br/>
-                                <h1 class="@if(Auth::guest()) text-white @endif"><i class="fa fa-book"></i></h1>
+                                <a class="@if(Auth::guest()) text-white @endif nounderline" href="#">
+                                    <h1 class="@if(Auth::guest()) text-white @endif"><i class="fa fa-book"></i></h1>
 
-                                <h3 class="@if(Auth::guest()) text-white @endif text-lead mt-3 mb-0">
-                                    {{ __('Documentation') }}
-                                </h3>
+                                    <h3 class="@if(Auth::guest()) text-white @endif text-lead mt-3 mb-0">
+                                            {{ __('Documentation') }}
+                                    </h3>
+                                </a>
                                 <br/>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 pt-5">
                             <div class="border p-10">
                                 <br/>
-                                <h1 class="@if(Auth::guest()) text-white @endif"><i class="fa fa-tachometer-alt"></i> </h1>
+                                <a class="@if(Auth::guest()) text-white @endif nounderline" href="{{url("/dashboard")}}">
+                                    <h1 class="@if(Auth::guest()) text-white @endif"><i class="fa fa-tachometer-alt"></i> </h1>
 
-                                <h3 class="@if(Auth::guest()) text-white @endif text-lead mt-3 mb-0">
-                                    {{ __('Dashboard') }}
-                                </h3>
+                                    <h3 class="@if(Auth::guest()) text-white @endif text-lead mt-3 mb-0">
+                                        {{ __('Dashboard') }}
+                                    </h3>
+                                </a>
                                 <br/>
                             </div>
                         </div>

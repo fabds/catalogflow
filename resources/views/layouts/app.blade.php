@@ -41,6 +41,7 @@ The above copyright notice and this permission notice shall be included in all c
     <!--link href="{{ asset('') }}css/app.css?v=2.0.0" rel="stylesheet" /-->
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('paper') }}/demo/demo.css" rel="stylesheet" />
+    <link href="{{ asset('catalogflow') }}/app.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 
 </head>
@@ -49,7 +50,6 @@ The above copyright notice and this permission notice shall be included in all c
 
     @auth()
         @include('layouts.page_templates.auth')
-        @include('layouts.navbars.fixed-plugin')
     @endauth
 
     @guest

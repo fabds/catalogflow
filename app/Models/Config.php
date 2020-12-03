@@ -29,4 +29,9 @@ class Config extends Model
     ];
 
     public $timestamps = false;
+
+    public function jobs()
+    {
+        return $this->hasMany('App\Models\Jobs', 'project', 'scope');
+    }
 }

@@ -7,32 +7,29 @@
     <div class="content">
         <div class="row">
             <div class="col-md-12">
-                @if(isset($_GET['s']) && !empty($_GET['s']))
-                    @if(strlen($_GET['s'])>=3)
-                        <h4>Results for <strong>'{{$_GET['s']}}'</strong></h4>
-                    @else
-                        <h4>Can't find results for <strong>'{{$_GET['s']}}'</strong>. Please insert at least 3 chars</h4>
-                    @endif
-                @endif
+                @include('partials.search_results')
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title"> Users</h4>
+                        <h4 class="card-title"> {{__("Users")}}</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-secondary">
                                 <th>
-                                    Name
+                                    {{__("Name")}}
                                 </th>
                                 <th>
-                                    Email
+                                    {{__("Email")}}
                                 </th>
                                 <th>
-                                    Department
+                                    {{__("Department")}}
+                                </th>
+                                <th>
+                                    {{__("Status")}}
                                 </th>
                                 <th width="50" class="text-center">
-                                    Actions
+                                    {{__("Actions")}}
                                 </th>
                                 </thead>
                                 <tbody>
@@ -48,7 +45,14 @@
                                             {{$user->department}}
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" href="{{url("users")}}/{{$user->id}}/edit"><i class="fa fa-edit mr-1"></i> Edit User</a>
+                                            @if($user->status)
+                                                <i class="fas fa-check-circle text-success"></i>
+                                            @else
+                                                <i class="fas fa-times-circle text-danger"></i>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary btn-sm" href="{{url("users")}}/{{$user->id}}/edit"><i class="fa fa-edit mr-1"></i> {{__("Edit")}}</a>
                                         </td>
                                     </tr>
                                 @endforeach

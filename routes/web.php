@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if(Auth::guest()) {
+        return view('welcome');
+    }
+    return redirect("/dashboard");
 });
 
 //Auth::routes();
@@ -22,7 +25,9 @@ Route::get('/', function () {
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
+Route::get('/home', function () {
+    return redirect("/dashboard");
+});
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('users', 'App\Http\Controllers\UserController');

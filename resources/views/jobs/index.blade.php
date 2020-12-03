@@ -7,13 +7,7 @@
     <div class="content">
         <div class="row">
             <div class="col-md-12">
-                @if(isset($_GET['s']) && !empty($_GET['s']))
-                    @if(strlen($_GET['s'])>=3)
-                        <h4>Results for <strong>'{{$_GET['s']}}'</strong></h4>
-                    @else
-                        <h4>Can't find results for <strong>'{{$_GET['s']}}'</strong>. Please insert at least 3 chars</h4>
-                    @endif
-                @endif
+                @include('partials.search_results')
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Jobs ({{$jobs->total()}})</h4>
@@ -23,28 +17,28 @@
                             <table class="table">
                                 <thead class=" text-secondary">
                                     <th style="max-width: 300px; word-wrap:break-word;">
-                                        Filename
+                                        {{__("Filename")}}
                                     </th>
                                     <th>
-                                        Project
+                                        {{__("Project")}}
                                     </th>
                                     <th>
-                                        Type
+                                        {{__("Type")}}
                                     </th>
                                     <th>
-                                        Key
+                                        {{__("Key")}}
                                     </th>
                                     <th>
-                                        Status
+                                        {{__("Status")}}
                                     </th>
                                     <th>
-                                        Created At
+                                        {{__("Created At")}}
                                     </th>
                                     <th>
-                                        Processed At
+                                        {{__("Processed At")}}
                                     </th>
                                     <th>
-                                        Actions
+                                        {{__("Actions")}}
                                     </th>
                                 </thead>
                                 <tbody>
@@ -54,7 +48,7 @@
                                             <a class="font-weight-bold" href="{{url("jobs")}}/{{$job->id}}">{{$job->filename}}</a>
                                         </td>
                                         <td>
-                                            {{$job->project}}
+                                            <a href="{{url("projects?s=" . $job->project)}}">{{$job->project}}</a>
                                         </td>
                                         <td>
                                             {{$job->type}}

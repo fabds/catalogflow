@@ -7,32 +7,26 @@
     <div class="content">
         <div class="row">
             <div class="col-md-12">
-                @if(isset($_GET['s']) && !empty($_GET['s']))
-                    @if(strlen($_GET['s'])>=3)
-                        <h4>Results for <strong>'{{$_GET['s']}}'</strong></h4>
-                    @else
-                        <h4>Can't find results for <strong>'{{$_GET['s']}}'</strong>. Please insert at least 3 chars</h4>
-                    @endif
-                @endif
+                @include('partials.search_results')
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Projects ({{$projects->total()}})</h4>
+                        <h4 class="card-title">{{__("Projects")}} ({{$projects->total()}})</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-secondary">
                                     <th>
-                                        Name
+                                        {{__("Name")}}
                                     </th>
                                     <th>
-                                        Active
+                                        {{__("Status")}}
                                     </th>
                                     <th>
-                                        Jobs
+                                        {{__("Jobs")}}
                                     </th>
                                     <th class="text-center" width="50">
-                                        Action
+                                        {{__("Actions")}}
                                     </th>
                                 </thead>
                                 <tbody>
@@ -49,7 +43,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            30 jobs
+                                            <a href="{{url("jobs?s=" . $project->scope)}}"><strong>{{$project->jobs()->count()}}</strong> jobs</a>
                                         </td>
                                         <td class="text-center">
                                             <form action="{{url("projects")}}/{{$project->id}}" method="POST">
@@ -59,10 +53,10 @@
 
                                                     @if($project->active)
                                                     <button class="btn btn-block btn-sm btn-danger">
-                                                        Deactivate
+                                                        {{__("Deactivate")}}
                                                     @else
                                                     <button class="btn btn-block btn-sm btn-success">
-                                                        Activate
+                                                        {{__("Activate")}}
                                                     @endif
                                                 </button>
                                             </form>

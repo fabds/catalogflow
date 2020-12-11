@@ -25,9 +25,11 @@
                                     <th>
                                         {{__("Jobs")}}
                                     </th>
+                                    @can('project-edit')
                                     <th class="text-center" width="50">
                                         {{__("Actions")}}
                                     </th>
+                                    @endcan
                                 </thead>
                                 <tbody>
                                 @foreach($projects as $project)
@@ -45,6 +47,7 @@
                                         <td>
                                             <a href="{{url("jobs?s=" . $project->scope)}}"><strong>{{$project->jobs()->count()}}</strong> jobs</a>
                                         </td>
+                                        @can('project-edit')
                                         <td class="text-center">
                                             <form action="{{url("projects")}}/{{$project->id}}" method="POST">
                                                 {{ csrf_field() }}
@@ -61,6 +64,7 @@
                                                 </button>
                                             </form>
                                         </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                                 </tbody>

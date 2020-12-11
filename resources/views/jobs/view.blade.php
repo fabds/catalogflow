@@ -14,15 +14,15 @@
                                 <h3 class="card-title">Job {{$job->key}}</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a class="btn btn-primary btn-sm" href="{{url("jobs")}}"><i class="fa fa-list"></i> All Jobs</a>
-                                <a class="btn btn-primary btn-sm" href="{{url("jobs")}}/{{$job->id}}/edit"><i class="fa fa-edit"></i> Edit Job</a>
+                                <a class="btn btn-primary btn-sm" href="{{url("jobs")}}"><i class="fa fa-list"></i> {{__('All Jobs')}}</a>
+                                <a class="btn btn-primary btn-sm" href="{{url("jobs")}}/{{$job->id}}/edit"><i class="fa fa-edit"></i> {{__('Edit')}}</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <label class="form-control-label">Filename</label>
+                                <label class="form-control-label">{{__('Filename')}}</label>
                                 <p>
                                     <?php
                                         $filenames = explode(",", $job->filename);
@@ -33,7 +33,7 @@
                                 </p>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-control-label">Project</label>
+                                <label class="form-control-label">{{__('Project')}}</label>
                                 <p>
                                 <h5>
                                     {{$job->project}}
@@ -43,11 +43,11 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label class="form-control-label">Type</label>
+                                <label class="form-control-label">{{__('Type')}}</label>
                                 <p><h5>{{$job->type}}</h5></p>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-control-label">Environment</label>
+                                <label class="form-control-label">{{__('Environment')}}</label>
                                 @if(isset($catalogflow_config['environments'][$job->environment]))
                                     <p><h5 class="text-{{$catalogflow_config['environments'][$job->environment]['type']}}">{{$catalogflow_config['environments'][$job->environment]['label']}}</h5></p>
                                 @else
@@ -57,11 +57,11 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label class="form-control-label">Key</label>
+                                <label class="form-control-label">{{__('Key')}}</label>
                                 <p><h5><code>{{$job->key}}</code></h5></p>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-control-label">Status</label>
+                                <label class="form-control-label">{{__('Status')}}</label>
                                 @if(isset($catalogflow_config['statuses'][$job->status]))
                                     <p><h5 class="text-{{$catalogflow_config['statuses'][$job->status]['type']}}">{{$catalogflow_config['statuses'][$job->status]['label']}}</h5></p>
                                 @else
@@ -71,7 +71,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <label class="form-control-label">Notes</label>
+                                <label class="form-control-label">{{__('Notes')}}</label>
                                 <p>
                                 <h5>
                                     @if(!empty($job->notes))
@@ -85,7 +85,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <label class="form-control-label">Log</label>
+                                <label class="form-control-label">{{__('Log')}}</label>
                                 <p>
                                     <h5>
                                     @if(!empty($job->log))
@@ -99,7 +99,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label class="form-control-label">Created At</label>
+                                <label class="form-control-label">{{__('Created At')}}</label>
                                 <p>
                                     <h5>
                                     @if(!empty($job->created_at))
@@ -111,7 +111,7 @@
                                 </p>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-control-label">Processed At</label>
+                                <label class="form-control-label">{{__('Processed At')}}</label>
                                 <p>
                                     <h5>
                                     @if(!empty($job->processed_at))
@@ -123,17 +123,19 @@
                                 </p>
                             </div>
                         </div>
+                        @can('job-download-file')
                         <div class="row">
                             <div class="col-md-6">
-                                <label class="form-control-label">Files</label>
+                                <label class="form-control-label">{{__('Files')}}</label>
                                 <p>
                                     <a class="btn btn-primary" href="">
                                         <i class="fa fa-cloud-download-alt mr-2"></i>
-                                        Download Job Files
+                                        {{__('Download Job Files')}}
                                     </a>
                                 </p>
                             </div>
                         </div>
+                        @endcan
                     </div>
                 </div>
             </div>

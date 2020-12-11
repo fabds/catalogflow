@@ -6,9 +6,26 @@ use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use DB;
 
 class UserController extends Controller
 {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    function __construct()
+    {
+        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:user-create', ['only' => ['create','store']]);
+        $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the users
      *
@@ -32,7 +49,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return view('users.view', ['user' => User::find($id), 'catalogflow_config' => config('catalogflow')]);
+        $user = User::find($id);
+        $userRole = $user->roles->pluck('name','name')->all();
+        return view('users.view', ['user' => $user, 'catalogflow_config' => config('catalogflow'), 'userRole' => $userRole]);
     }
 
     /**
@@ -43,7 +62,13 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('users.edit', ['user' => User::find($id), 'catalogflow_config' => config('catalogflow')]);
+        $user = User::find($id);
+        $roles = Role::whereNotIn('name', ['Admin'])->pluck('name', 'name');
+        if($user->hasRole('Admin')) {
+            $roles = Role::pluck('name', 'name')->all();
+        }
+        $userRole = $user->roles->pluck('name','name')->all();
+        return view('users.edit', ['user' => $user, 'catalogflow_config' => config('catalogflow'), 'roles' => $roles, 'userRole' => $userRole]);
     }
 
     /**
@@ -58,6 +83,8 @@ class UserController extends Controller
         $user = User::find($id);
         $user->status = (bool) isset($request["status"]);
         $user->save();
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+        $user->assignRole($request->input('roles'));
         return redirect('users/'.$id);
     }
 }

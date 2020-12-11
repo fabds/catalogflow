@@ -17,25 +17,38 @@
                     <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'projects' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'projects') }}">
-                    <i class="nc-icon nc-app"></i>
-                    <p>{{ __('Projects') }}</p>
-                </a>
-            </li>
-            <li class="{{ $elementActive == 'jobs' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'jobs') }}">
-                    <i class="nc-icon nc-briefcase-24"></i>
-                    <p>{{ __('Jobs') }}</p>
-                </a>
-            </li>
-            <li class="{{ $elementActive == 'users' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'users') }}">
-                    <i class="nc-icon nc-circle-10"></i>
-                    <p>{{ __('Users') }}</p>
-                </a>
-            </li>
-
+            @can('project-list')
+                <li class="{{ $elementActive == 'projects' ? 'active' : '' }}">
+                    <a href="{{ route('page.index', 'projects') }}">
+                        <i class="nc-icon nc-app"></i>
+                        <p>{{ __('Projects') }}</p>
+                    </a>
+                </li>
+            @endcan
+            @can('job-list')
+                <li class="{{ $elementActive == 'jobs' ? 'active' : '' }}">
+                    <a href="{{ route('page.index', 'jobs') }}">
+                        <i class="nc-icon nc-briefcase-24"></i>
+                        <p>{{ __('Jobs') }}</p>
+                    </a>
+                </li>
+            @endcan
+            @can('user-list')
+                <li class="{{ $elementActive == 'users' ? 'active' : '' }}">
+                    <a href="{{ route('page.index', 'users') }}">
+                        <i class="nc-icon nc-circle-10"></i>
+                        <p>{{ __('Users') }}</p>
+                    </a>
+                </li>
+            @endcan
+            @can('role-list')
+                <li class="{{ $elementActive == 'roles' ? 'active' : '' }}">
+                    <a href="{{ route('page.index', 'roles') }}">
+                        <i class="nc-icon nc-key-25"></i>
+                        <p>{{ __('Roles') }}</p>
+                    </a>
+                </li>
+            @endcan
 
             <li class="active-pro {{ $elementActive == 'upgrade' ? 'active' : '' }}">
                 <a href="https://filoblu.atlassian.net/wiki/spaces/TECH/pages/1423671305/CATALOG+FLOW" class="bg-danger">

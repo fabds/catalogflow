@@ -15,7 +15,7 @@
                             </div>
                             <div class="col-4 text-right">
                                 <a class="btn btn-primary btn-sm" href="{{url("users")}}"><i class="fa fa-list"></i> {{__("Users")}}</a>
-                                <a class="btn btn-primary btn-sm" href="{{url("users")}}/{{$user->id}}"><i class="fa fa-eye"></i> {{__("View")}}</a>
+                                <a class="btn btn-primary btn-sm" href="{{url("users")}}/{{$user->id}}"><i class="fa fa-eye"></i> {{__("View User")}}</a>
                             </div>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                             {{ method_field('PATCH') }}
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label class="form-control-label">Firstname</label>
+                                    <label class="form-control-label">{{__("Firstname")}}</label>
                                     <p>
                                         <h5>
                                             {{$user->firstname}}
@@ -33,7 +33,7 @@
                                     </p>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-control-label">Lastname</label>
+                                    <label class="form-control-label">{{__("Lastname")}}</label>
                                     <p>
                                         <h5>
                                             {{$user->lastname}}
@@ -43,7 +43,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label class="form-control-label">Email</label>
+                                    <label class="form-control-label">{{__("Email")}}</label>
                                     <p>
                                         <h5>
                                             {{$user->email}}
@@ -51,7 +51,7 @@
                                     </p>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-control-label">Department</label>
+                                    <label class="form-control-label">{{__("Department")}}</label>
                                     <p>
                                     <h5>
                                         {{$user->department}}
@@ -61,15 +61,22 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label class="form-control-label">Role</label>
+                                    <label class="form-control-label">{{__("Role")}}</label>
                                     <p>
                                         <h5>
-                                            Admin
+                                            @can('user-role')
+                                                {!! Form::select('roles', $roles, $userRole, array('class' => 'form-control')) !!}
+                                            @endcan
+                                            @cannot('user-role')
+                                                @foreach($userRole as $role)
+                                                    {{$role}}
+                                                @endforeach
+                                            @endcannot
                                         </h5>
                                     </p>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-control-label">Status</label>
+                                    <label class="form-control-label">{{__("Status")}}</label>
                                     <p>
                                         <h5>
                                             <!-- Rounded switch -->
@@ -83,7 +90,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label class="form-control-label">Created At</label>
+                                    <label class="form-control-label">{{__("Created At")}}</label>
                                     <p>
                                     <h5>
                                         @if(!empty($user->created_at))
@@ -95,21 +102,23 @@
                                     </p>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-control-label">Updated At</label>
+                                    <label class="form-control-label">{{__("Updated At")}}</label>
                                     <p>
-                                    <h5>
-                                        @if(!empty($user->updated_at))
-                                            {{$user->updated_at->format($catalogflow_config['formats']['date']['human_datetime'])}}
-                                        @else
-                                            -
-                                        @endif
-                                    </h5>
+                                        <h5>
+                                            @if(!empty($user->updated_at))
+                                                {{$user->updated_at->format($catalogflow_config['formats']['date']['human_datetime'])}}
+                                            @else
+                                                -
+                                            @endif
+                                        </h5>
                                     </p>
                                 </div>
+
                             </div>
                             <div class="row">
                                 <div class="col-md-12 text-right">
-                                    <button type="submit" class="btn-primary btn btn-md">Update</button>
+                                    <a class="btn btn-md btn-danger" href="{{url("users")}}/{{$user->id}}">{{__('Cancel')}}</a>
+                                    <button type="submit" class="btn-primary btn btn-md">{{__("Update")}}</button>
                                 </div>
                             </div>
                         </form>

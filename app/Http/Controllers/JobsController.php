@@ -8,6 +8,19 @@ use Illuminate\Http\Request;
 class JobsController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    function __construct()
+    {
+        $this->middleware('permission:job-list|job-create|job-edit|job-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:job-create', ['only' => ['create','store']]);
+        $this->middleware('permission:job-edit|job-manage', ['only' => ['edit','update']]);
+        $this->middleware('permission:job-delete', ['only' => ['destroy']]);
+    }
+
+    /**
      * @param Jobs $model
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */

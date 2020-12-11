@@ -53,15 +53,17 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                                <label class="form-control-label">Role</label>
+                                <label class="form-control-label">{{__("Role")}}</label>
                                 <p>
                                 <h5>
-                                    Admin
+                                    @foreach($userRole as $role)
+                                        {{$role}}
+                                    @endforeach
                                 </h5>
                                 </p>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-control-label">Status</label>
+                                <label class="form-control-label">{{__("Status")}}</label>
                                 <p>
                                 <h5>
                                     <!-- Rounded switch -->

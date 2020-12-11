@@ -70,9 +70,12 @@
                                             {{!empty($job->processed_at)?$job->processed_at->format($catalogflow_config['formats']['date']['human_datetime']):'-'}}
                                         </td>
                                         <td>
+                                            @canany(['job-edit','job-manage'])
                                             <a href="{{url("jobs")}}/{{$job->id}}/edit" class="btn btn-sm btn-icon btn-info"><i class="fa fa-edit"></i></a>
-
+                                            @endcan
+                                            @can('job-delete')
                                             <a href="javascript:void(0)" class="btn btn-sm btn-icon btn-danger delete-job" data-elementid="{{$job->id}}"><i class="fa fa-times"></i></a>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

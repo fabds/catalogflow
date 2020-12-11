@@ -30,7 +30,8 @@ Route::get('/home', function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::resource('users', 'App\Http\Controllers\UserController');
+    Route::resource('roles','App\Http\Controllers\RoleController');
+    Route::resource('users', 'App\Http\Controllers\UserController');
     Route::resource('jobs', 'App\Http\Controllers\JobsController');
     Route::resource('projects', 'App\Http\Controllers\ProjectsController');
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);

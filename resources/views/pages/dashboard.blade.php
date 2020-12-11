@@ -135,6 +135,29 @@
         </div>
 
         <div class="row">
+
+            <div class="col-md-12">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-title">Jobs per brand</h5>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="chartJobsPerProjects" width="400" height="100"></canvas>
+                    </div>
+                    <div class="card-footer">
+                        <div class="chart-legend">
+                            <i class="fa fa-circle text-primary"></i> Job Totali
+                            <i class="fa fa-circle text-success"></i> Job Processati
+                            <i class="fa fa-circle text-danger"></i> Job In Errore
+                        </div>
+                        <hr />
+                        <div class="card-stats">
+                            <a href="{{url("/jobs")}}" class="nav-link text-dark"><i class="fa fa-list"></i> Jobs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-4">
                 <div class="card ">
                     <div class="card-header ">
@@ -158,95 +181,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">
-                <div class="card card-chart">
-                    <div class="card-header">
-                        <h5 class="card-title">NASDAQ: AAPL</h5>
-                        <p class="card-category">Line Chart with Points</p>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="speedChart" width="400" height="100"></canvas>
-                    </div>
-                    <div class="card-footer">
-                        <div class="chart-legend">
-                            <i class="fa fa-circle text-info"></i> Tesla Model S
-                            <i class="fa fa-circle text-warning"></i> BMW 5 Series
-                        </div>
-                        <hr />
-                        <div class="card-stats">
-                            <a href="{{url("/jobs")}}" class="nav-link text-dark"><i class="fa fa-list"></i> Jobs</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card ">
-                    <div class="card-header ">
-                        <h5 class="card-title">Users Behavior</h5>
-                        <p class="card-category">24 Hours performance</p>
-                    </div>
-                    <div class="card-body ">
-                        <canvas id=chartHours width="400" height="100"></canvas>
-                    </div>
-                    <div class="card-footer ">
-                        <hr>
-                        <div class="stats">
-                            <i class="fa fa-history"></i> Updated 3 minutes ago
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card ">
-                    <div class="card-header ">
-                        <h5 class="card-title">Email Statistics</h5>
-                        <p class="card-category">Last Campaign Performance</p>
-                    </div>
-                    <div class="card-body ">
-                        <canvas id="chartEmail"></canvas>
-                    </div>
-                    <div class="card-footer ">
-                        <div class="legend">
-                            <i class="fa fa-circle text-primary"></i> Opened
-                            <i class="fa fa-circle text-warning"></i> Read
-                            <i class="fa fa-circle text-danger"></i> Deleted
-                            <i class="fa fa-circle text-gray"></i> Unopened
-                        </div>
-                        <hr>
-                        <div class="stats">
-                            <i class="fa fa-calendar"></i> Number of emails sent
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="card card-chart">
-                    <div class="card-header">
-                        <h5 class="card-title">NASDAQ: AAPL</h5>
-                        <p class="card-category">Line Chart with Points</p>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="speedChart" width="400" height="100"></canvas>
-                    </div>
-                    <div class="card-footer">
-                        <div class="chart-legend">
-                            <i class="fa fa-circle text-info"></i> Tesla Model S
-                            <i class="fa fa-circle text-warning"></i> BMW 5 Series
-                        </div>
-                        <hr />
-                        <div class="card-stats">
-                            <i class="fa fa-check"></i> Data information certified
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection
 
@@ -254,14 +191,14 @@
     <script>
         $(document).ready(function() {
             // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
-            demo.initChartsPages();
+            //demo.initChartsPages();
 
             ctx = document.getElementById('chartJobs').getContext("2d");
 
             myChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: [1, 2, 3],
+                    labels: ["Da Processare", "Processati", "Bloccati", "In Errore"],
                     datasets: [{
                         label: "Jobs",
                         pointRadius: 0,
@@ -290,7 +227,7 @@
                     },
 
                     tooltips: {
-                        enabled: false
+                        enabled: true
                     },
 
                     scales: {
@@ -321,6 +258,79 @@
                     },
                 }
             });
+
+
+
+            <?php
+            $totalNums = [];
+            $successNums = [];
+            $errorNums = [];
+            $totalProjects = [];
+
+            foreach ($stats['jobs_per_brand'] as $key => $val) {
+                $totalNums[] = $val['total'];
+                $successNums[] = $val['success'];
+                $errorNums[] = $val['error'];
+                $totalProjects[] = $key;
+            }
+            ?>
+
+            var barChartData = {
+                labels: ["{!!implode('","',$totalProjects)!!}"],
+                datasets: [{
+                    label: 'Job Totali',
+                    backgroundColor: "#50CBCE",
+                    stack: "total",
+                    data: [
+                        {{implode(',',$totalNums)}}
+                    ]
+                }, {
+                    label: 'Job Processati',
+                    backgroundColor: '#6BD098',
+                    stack: "partial",
+                    data: [
+                        {{implode(',',$successNums)}}
+                    ]
+                }, {
+                    label: 'Job In Errore',
+                    backgroundColor: '#EF8157',
+                    stack: "partial",
+                    data: [
+                        {{implode(',',$errorNums)}}
+                    ]
+                }]
+
+            };
+
+            chartJobsPerProjects = document.getElementById('chartJobsPerProjects').getContext('2d');
+            myBar = new Chart(chartJobsPerProjects, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    title: {
+                        display: false,
+                        text: 'Jobs per brand'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                        }],
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    },
+                    legend: {
+                        display: false
+                    },
+                }
+            });
+
+
         });
     </script>
 @endpush

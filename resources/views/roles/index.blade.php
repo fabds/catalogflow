@@ -31,7 +31,7 @@
                                     <tr>
                                         <th>{{__("Id")}}</th>
                                         <th>{{__("Name")}}</th>
-                                        <th width="280px">{{__("Actions")}}</th>
+                                        <th width="100px" class="text-center">{{__("Actions")}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,12 +39,12 @@
                                         <tr>
                                             <td>{{ $role->id }}</td>
                                             <td><a href="{{ route('roles.show',$role->id) }}" class="font-weight-bold" >{{ $role->name }}</a></td>
-                                            <td>
+                                            <td class="text-center">
                                                 @can('role-edit')
                                                     <a class="btn btn-sm btn-icon btn-info" href="{{ route('roles.edit',$role->id) }}"><i class="fa fa-edit"></i></a>
                                                 @endcan
                                                 @can('role-delete')
-                                                        <a href="javascript:void(0)" class="btn btn-sm btn-icon btn-danger delete-role" data-elementid="{{$role->id}}"><i class="fa fa-times"></i></a>
+                                                        <a href="javascript:void(0)" class="btn btn-sm btn-icon btn-danger delete-role" data-elementid="{{$role->id}}" data-elementname="{{$role->name}}"><i class="fa fa-times"></i></a>
                                                 @endcan
                                             </td>
                                         </tr>
@@ -65,6 +65,7 @@
         $(document).on('click', '.delete-role', function(){
             var el = $(this);
             var elementid = el.data('elementid');
+            var elementname = el.data('elementname');
             swalWithBootstrapButtons.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -80,7 +81,7 @@
                         url: '{{url("roles/")}}/'+elementid,
                         data: {"_token": "{{ csrf_token() }}"},
                         success: function (data) {
-                            catalogflow.showNotification('<h5>Avviso</h5><h6>Job '+ elementid +' eliminato con successo</h6>', 'nc-icon nc-bell-55', 'success','top','right');
+                            catalogflow.showNotification('<h5>Avviso</h5><h6>Ruolo '+ elementname +' eliminato con successo</h6>', 'nc-icon nc-bell-55', 'success','top','right');
                             el.parent().parent().remove();
                         }
                     });

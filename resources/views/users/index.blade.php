@@ -23,7 +23,7 @@
                                     {{__("Email")}}
                                 </th>
                                 <th>
-                                    {{__("Department")}}
+                                    {{__("Role")}}
                                 </th>
                                 <th>
                                     {{__("Status")}}
@@ -42,7 +42,9 @@
                                             {{$user->email}}
                                         </td>
                                         <td>
-                                            {{$user->department}}
+                                            @foreach($user->getRoleNames() as $role)
+                                                {{$role}}
+                                            @endforeach
                                         </td>
                                         <td>
                                             @if($user->status)
@@ -51,7 +53,7 @@
                                                 <i class="fas fa-times-circle text-danger"></i>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td class="text-right">
                                             <a class="btn btn-primary btn-sm" href="{{url("users")}}/{{$user->id}}/edit"><i class="fa fa-edit mr-1"></i> {{__("Edit")}}</a>
                                         </td>
                                     </tr>

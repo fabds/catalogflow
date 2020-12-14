@@ -1,21 +1,13 @@
 <!--
 =========================================================
- Paper Dashboard - v2.0.0
+ CatalogFlow
 =========================================================
 
- Product Page: https://www.creative-tim.com/product/paper-dashboard
- Copyright 2019 Creative Tim (https://www.creative-tim.com)
- UPDIVISION (https://updivision.com)
- Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard/blob/master/LICENSE)
-
- Coded by Creative Tim
+ Author: Fabio Della Selva
+ Copyright 2020 FiloBlu S.p.A.
 
 =========================================================
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
-
-
-
+-->
 <!DOCTYPE html>
 <html lang="en">
 

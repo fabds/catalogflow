@@ -55,7 +55,7 @@
                             @csrf
                         </form>
                         <div class="" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('My profile') }}</a>
+                            <!--a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('My profile') }}</a-->
                             <a class="dropdown-item" style="cursor: pointer" onclick="document.getElementById('formLogOut').submit();">{{ __('Log out') }}</a>
                         </div>
                     </div>

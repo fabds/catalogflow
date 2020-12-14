@@ -44,9 +44,15 @@
                                 </p>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-control-label">{{__("Department")}}</label>
+                                <label class="form-control-label">{{__("Status")}}</label>
                                 <p>
-                                <h5 class="text-dark">Tech</h5>
+                                <h5>
+                                    <!-- Rounded switch -->
+                                    <label class="switch">
+                                        <input @if($user->status) checked @endif disabled type="checkbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </h5>
                                 </p>
                             </div>
                         </div>
@@ -62,18 +68,7 @@
                                 </h5>
                                 </p>
                             </div>
-                            <div class="col-md-6">
-                                <label class="form-control-label">{{__("Status")}}</label>
-                                <p>
-                                <h5>
-                                    <!-- Rounded switch -->
-                                    <label class="switch">
-                                        <input @if($user->status) checked @endif disabled type="checkbox">
-                                        <span class="slider round"></span>
-                                    </label>
-                                </h5>
-                                </p>
-                            </div>
+
                         </div>
 
                         <div class="row">

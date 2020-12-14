@@ -37,7 +37,7 @@
                                     <th>
                                         {{__("Processed At")}}
                                     </th>
-                                    <th>
+                                    <th class="text-center">
                                         {{__("Actions")}}
                                     </th>
                                 </thead>
@@ -69,7 +69,7 @@
                                         <td>
                                             {{!empty($job->processed_at)?$job->processed_at->format($catalogflow_config['formats']['date']['human_datetime']):'-'}}
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             @canany(['job-edit','job-manage'])
                                             <a href="{{url("jobs")}}/{{$job->id}}/edit" class="btn btn-sm btn-icon btn-info"><i class="fa fa-edit"></i></a>
                                             @endcan

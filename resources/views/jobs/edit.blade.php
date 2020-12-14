@@ -127,7 +127,7 @@
                                     <p>
                                     <h5>
                                         @if(!empty($job->created_at))
-                                            {{$job->created_at}}
+                                            {{$job->created_at->format($catalogflow_config['formats']['date']['human_datetime'])}}
                                         @else
                                             -
                                         @endif
@@ -139,7 +139,7 @@
                                     <p>
                                     <h5>
                                         @if(!empty($job->processed_at))
-                                            {{$job->processed_at}}
+                                            {{$job->processed_at->format($catalogflow_config['formats']['date']['human_datetime'])}}
                                         @else
                                             -
                                         @endif
